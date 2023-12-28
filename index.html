@@ -17,9 +17,14 @@
       <h3>Related Movies</h3>
       <div class="related-movies" id="related-movies"></div>
     </div>
+    <div class="search-movie-popup" id="search-movie-popup">
+      <h1>Results for <span id="search-query"></span></h1>
+      <button onclick="closeSearchMoviePopup()" class="close-button">X</button>
+      <div class="search-results" id="search-results"></div>
+    </div>
     <div>
-      <form class="search-form">
-        <input type="text" />
+      <form class="search" id="search">
+        <input type="text" id="search-input" />
         <button type="submit">Search</button>
       </form>
     </div>
