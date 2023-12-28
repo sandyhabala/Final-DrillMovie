@@ -56,3 +56,50 @@ header {
   border-radius: 0.5rem;
   max-width: 300px;
 }
+
+.popup-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+.movie-popup,
+.search-popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: blanchedalmond;
+  padding: 20px;
+  z-index: 3;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.close-button {
+  padding: 0.5rem;
+  border-radius: 30%;
+}
+
+.related-movies {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.popup-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content img {
+  border-radius: 0.5rem;
+  max-width: 70%;
+}
