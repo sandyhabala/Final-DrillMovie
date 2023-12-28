@@ -2,9 +2,11 @@ const moviesDiv = document.getElementById("movies");
 
 const apiKey = "1bfdbff05c2698dc917dd28c08d41096";
 
+let page = 1;
+
 const getMovies = async () => {
   const response = await fetch(
-    `https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}&language=en-US&page=1`
+    `https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}&language=en-US&page=${page}`
   );
 
   const movies = await response.json();
@@ -61,6 +63,11 @@ const renderMovies = async () => {
 };
 
 renderMovies();
+
+const seeMoreMovies = async () => {
+  page++;
+  await renderMovies();
+};
 
 const popupContent = (
   title,

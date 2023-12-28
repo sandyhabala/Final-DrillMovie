@@ -32,10 +32,15 @@ header {
   border-radius: 0.3rem;
 }
 
-.search button {
+.search button,
+.footer button {
   background-color: blanchedalmond;
-  padding: 0.2rem;
+  padding: 0.5rem;
   border-radius: 0.3rem;
+}
+
+.footer button {
+  margin-top: 0.5rem;
 }
 
 .movies {
@@ -103,4 +108,9 @@ header {
 .popup-content img {
   border-radius: 0.5rem;
   max-width: 70%;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
 }
