@@ -1,9 +1,12 @@
+// declare movie container
+
 const moviesDiv = document.getElementById("movies");
 
 const apiKey = "1bfdbff05c2698dc917dd28c08d41096";
 
 let page = 1;
 
+// get upcoming movies function
 const getMovies = async () => {
   const response = await fetch(
     `https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}&language=en-US&page=${page}`
@@ -13,6 +16,7 @@ const getMovies = async () => {
   return movies.results;
 };
 
+// search movies function
 const searchMovies = async (title) => {
   const response = await fetch(
     `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${title}`
@@ -22,6 +26,7 @@ const searchMovies = async (title) => {
   return movies.results;
 };
 
+// get movie info function
 const movieInfo = async (id) => {
   const response = await fetch(
     `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=en-US`
@@ -32,6 +37,7 @@ const movieInfo = async (id) => {
   return movieInfo;
 };
 
+// get similar movies function
 const relatedMovies = async (id) => {
   const response = await fetch(
     `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${apiKey}&language=en-US&page=1`
@@ -42,6 +48,7 @@ const relatedMovies = async (id) => {
   return movies.results;
 };
 
+// element for movie poster
 const moviePoster = (title, backdrop_path, id) => {
   return `
         <div class="movie-poster" ondblclick="viewMovie(${id})">
@@ -53,6 +60,7 @@ const moviePoster = (title, backdrop_path, id) => {
           `;
 };
 
+// display movies function
 const renderMovies = async () => {
   const movies = await getMovies();
   moviesDiv.innerHTML = movies
@@ -64,11 +72,13 @@ const renderMovies = async () => {
 
 renderMovies();
 
+// extra feature--see more movies function
 const seeMoreMovies = async () => {
   page++;
   await renderMovies();
 };
 
+// movie info content display
 const popupContent = (
   title,
   overview,
@@ -96,12 +106,14 @@ const popupContent = (
   `;
 };
 
+// declare elements
 const moviePopup = document.getElementById("movie-popup");
 const popupOverlay = document.getElementById("popup-overlay");
 const popupContainer = document.getElementById("popup-container");
 const relatedMoviesContainer = document.getElementById("related-movies");
 const searchMoviePopup = document.getElementById("search-movie-popup");
 
+// view movie on double click
 const viewMovie = async (id) => {
   moviePopup.style.display = "block";
   popupOverlay.style.display = "block";
@@ -127,6 +139,7 @@ const viewMovie = async (id) => {
   searchMoviePopup.style = "hidden";
 };
 
+// close popups
 const closeMoviePopup = () => {
   moviePopup.style.display = "none";
   popupOverlay.style.display = "none";
@@ -137,6 +150,7 @@ const closeSearchMoviePopup = () => {
   popupOverlay.style.display = "none";
 };
 
+// declare elements for searching
 const search = document.getElementById("search");
 const searchInput = document.getElementById("search-input");
 const searchResults = document.getElementById("search-results");
@@ -149,6 +163,7 @@ searchInput.addEventListener("input", () => {
   searchInputValue = searchInput.value;
 });
 
+// search submission
 search.addEventListener("submit", async (e) => {
   e.preventDefault();
 
