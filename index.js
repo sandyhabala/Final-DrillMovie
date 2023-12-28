@@ -1,3 +1,5 @@
+const moviesDiv = document.getElementById("movies");
+
 const apiKey = "1bfdbff05c2698dc917dd28c08d41096";
 
 const getMovies = async () => {
@@ -38,3 +40,25 @@ const getSimilarMovies = async (id) => {
 
   return movies.results;
 };
+
+const moviePoster = (title, backdrop_path, id) => {
+  return `
+        <div class="movie-poster" onclick="togglePopup(${id})">
+            <div class="movie-poster-content">
+              <img src="http://image.tmdb.org/t/p/w500${backdrop_path}" alt=${backdrop_path}>
+              <h3>${title}</h3>
+            </div>
+        </div>
+          `;
+};
+
+const renderMovies = async () => {
+  const movies = await getMovies();
+  moviesDiv.innerHTML = movies
+    .map(({ title, backdrop_path, id }) => {
+      return moviePoster(title, backdrop_path, id);
+    })
+    .join("");
+};
+
+renderMovies();

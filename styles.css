@@ -37,3 +37,22 @@ header {
   padding: 0.2rem;
   border-radius: 0.3rem;
 }
+
+.movies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.movie-poster-content {
+  border-radius: 0.5rem;
+  overflow: hidden;
+  border: 2px solid gray;
+  padding: 1rem;
+}
+
+.movie-poster-content img {
+  border-radius: 0.5rem;
+  max-width: 300px;
+}
