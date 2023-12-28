@@ -8,7 +8,6 @@ const getMovies = async () => {
   );
 
   const movies = await response.json();
-  console.log(movies.results);
   return movies.results;
 };
 
@@ -103,7 +102,6 @@ const relatedMoviesContainer = document.getElementById("related-movies");
 const viewMovie = async (id) => {
   moviePopup.style.display = "block";
   popupOverlay.style.display = "block";
-  console.log(id);
   currentMovie = await movieInfo(id);
 
   popupContainer.innerHTML = popupContent(
@@ -115,17 +113,13 @@ const viewMovie = async (id) => {
     currentMovie.vote_average
   );
 
-  const similarMovies = await relatedMovies(id);
+  const movies = await relatedMovies(id);
 
-  console.log(similarMovies);
-
-  const mappedMovies = similarMovies.map(({ title, backdrop_path, id }) => {
-    return moviePoster(title, backdrop_path, id);
-  });
-
-  relatedMoviesContainer.innerHTML = mappedMovies.join("");
-
-  console.log(currentMovie);
+  relatedMoviesContainer.innerHTML = movies
+    .map(({ title, backdrop_path, id }) => {
+      return moviePoster(title, backdrop_path, id);
+    })
+    .join("");
 };
 
 const closeMoviePopup = () => {
